@@ -1,0 +1,21 @@
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: registry1
+    prefer-ip-address: true
+  client:
+    # 是否向注册中心注册自己
+    registerWithEureka: false
+    # 是否向注册中心获取注册信息
+    fetchRegistry: false
+    service-url:
+      #defaultZone: http://${security.user.name}:${security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://registry2:8762/eureka/,http://registry3:8763/eureka/
+    #fetch-registry: true
+    #register-with-eureka: true
+security:
+  user:
+    name: user
+    password: ${REGISTRY_SERVER_PASSWORD:password}

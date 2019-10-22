@@ -1,0 +1,22 @@
+
+
+name: wangft
+
+
+eureka:
+  instance:
+    hostname: registry
+    prefer-ip-address: true
+    metadata-map:
+      user.name: ${security.user.name}
+      user.password: ${security.user.password}
+  client:
+    service-url:
+     # defaultZone: http://user:${REGISTRY_SERVER_PASSWORD:password}@registry:8761/eureka/
+      #defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://registry1:8761/eureka/,http://registry2:8762/eureka/,http://registry2:8762/eureka/
+
+security:
+  user:
+    name: user
+    password: ${CONFIG_SERVER_PASSWORD:password}

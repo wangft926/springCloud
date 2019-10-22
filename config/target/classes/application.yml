@@ -1,0 +1,41 @@
+server:
+  port: 8888
+  context-path: /
+eureka:
+  instance:
+    #hostname: registry
+    prefer-ip-address: true
+#    metadata-map:
+#      user.name: ${security.user.name}
+#      user.password: ${security.user.password}
+  client:
+    service-url:
+     # defaultZone: http://user1:${REGISTRY_SERVER_PASSWORD:password}@registry:8761/eureka/
+      #defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://registry1:8761/eureka/,http://registry2:8762/eureka/,http://registry2:8762/eureka/
+spring:
+#  application:
+#    name: config45
+  profiles:
+    #读取本地配置文件
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          #search-locations: D:\springCloud\springCloud\hxs-gym\config-repo
+          search-locations: classpath:properties/
+        # git:
+       #   uri: https://github.com/spring-boot-cloud
+        #  search-paths: config-repo
+      profile: test
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
